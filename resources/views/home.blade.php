@@ -32,11 +32,11 @@
                 <span class="text-[#DAA520]">app</span>tech
             </a>
             <div class="hidden md:flex items-center gap-8 text-white/90">
-                <a href="#" class="hover:text-[#DAA520] transition-colors duration-300">Ramadan Kareem</a>
-                <a href="#" class="hover:text-[#DAA520] transition-colors duration-300">Pricing</a>
-                <a href="#" class="hover:text-[#DAA520] transition-colors duration-300">About Us</a>
-                <a href="#" class="hover:text-[#DAA520] transition-colors duration-300">About Us</a>
-                 </div>
+                <a href="/" class="text-[#DAA520] transition-colors duration-300">Home</a>
+                <a href="/Experiences" class="hover:text-[#DAA520] transition-colors duration-300">Experiences</a>
+                <a href="/Recipes" class="hover:text-[#DAA520] transition-colors duration-300">Recipes</a>
+                <a href="/Statistics" class="hover:text-[#DAA520] transition-colors duration-300">Statistics</a>
+            </div>
         </nav>
     </header>
 
