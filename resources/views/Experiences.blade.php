@@ -57,29 +57,25 @@
         <div class="max-w-2xl mx-auto mb-20">
             <div class="bg-black/40 backdrop-blur-lg rounded-2xl p-8 border border-[#DAA520]/20">
                 <h2 class="text-2xl font-semibold text-[#DAA520] mb-6">Share Your Experience</h2>
-                <form class="space-y-6">
+                <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data" class="space-y-6">
+                    @csrf
                     <div>
                         <label class="block text-white mb-2">Title</label>
-                        <input type="text" class="w-full px-4 py-3 rounded-lg bg-black/40 border border-[#DAA520]/20 text-white focus:border-[#DAA520] focus:outline-none" placeholder="Give your story a title">
+                        <input type="text" name="title" class="w-full px-4 py-3 rounded-lg bg-black/40 border border-[#DAA520]/20 text-white focus:border-[#DAA520] focus:outline-none" placeholder="Give your story a title" required>
                     </div>
                     <div>
                         <label class="block text-white mb-2">Your Story</label>
-                        <textarea class="w-full px-4 py-3 rounded-lg bg-black/40 border border-[#DAA520]/20 text-white focus:border-[#DAA520] focus:outline-none h-32" placeholder="Share your Ramadan experience..."></textarea>
+                        <textarea name="content" class="w-full px-4 py-3 rounded-lg bg-black/40 border border-[#DAA520]/20 text-white focus:border-[#DAA520] focus:outline-none h-32" placeholder="Share your Ramadan experience..." required></textarea>
                     </div>
                     <div>
-                        <label class="block text-white mb-2">Add Photos</label>
-                        <div class="border-2 border-dashed border-[#DAA520]/20 rounded-lg p-8 text-center">
-                            <input type="file" class="hidden" id="photo-upload" multiple accept="image/*">
-                            <label for="photo-upload" class="cursor-pointer">
-                                <span class="text-[#DAA520]">Click to upload</span>
-                                <p class="text-white/60 text-sm mt-2">PNG, JPG, GIF up to 10MB</p>
-                            </label>
-                        </div>
+                        <label class="block text-white mb-2">Add Photo</label>
+                        <input type="file" name="image" class="w-full px-4 py-3 rounded-lg bg-black/40 border border-[#DAA520]/20 text-white focus:border-[#DAA520] focus:outline-none" required>
                     </div>
                     <button type="submit" class="w-full px-8 py-4 bg-[#DAA520] text-black rounded-full font-medium hover:bg-[#B8860B] transition-all duration-300 transform hover:scale-105">
                         Share Experience
                     </button>
                 </form>
+
             </div>
         </div>
 

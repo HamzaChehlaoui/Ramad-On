@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Recipe;
 
 class RecipeController extends Controller
 {
-    
+
     public function index()
     {
-        // You can fetch data here to pass to the view
-        $recipes = []; // Replace with your data fetch logic
 
+        $recipes = Recipe::all();
         return view('Recipes', compact('recipes'));
     }
+  
 }
+
