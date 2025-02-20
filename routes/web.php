@@ -18,6 +18,6 @@ use App\Http\Controllers\StatisticsController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/Experiences', [ExperienceController::class, 'index'])->name('experiences');
+Route::get('/Experiences', [ExperienceController::class, 'index'])->name('posts');
 Route::get('/Recipes', [RecipeController::class, 'index'])->name('recipes');
 Route::get('/Statistics', [StatisticsController::class, 'index'])->name('statistics');

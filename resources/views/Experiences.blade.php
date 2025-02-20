@@ -88,44 +88,28 @@
             <h2 class="text-4xl font-bold text-white mb-12">
                 Community <span class="text-[#DAA520]">Stories</span>
             </h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Experience Card 1 -->
-                <div class="bg-black/40 backdrop-blur-lg rounded-2xl p-6 border border-[#DAA520]/20 hover:border-[#DAA520]/40 transition-all duration-300">
-                    <div class="flex items-start gap-4 mb-4">
-                        <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="User Avatar" class="w-10 h-10 rounded-full">
-                        <div>
-                            <h3 class="text-[#DAA520] font-semibold">Sarah Ahmad</h3>
-                        </div>
-                    </div>
-                    <h4 class="text-white text-xl font-semibold mb-4">My First Ramadan Away from Home</h4>
-                    <p class="text-white/80 mb-4">This year marks my first Ramadan away from family, studying abroad. Despite the distance, I've found a beautiful community here that has made me feel at home...</p>
-                    <img src="https://japantoday-asset.scdn3.secure.raxcdn.com/img/store/69/e5/8b6c14a3f4dcb619cd0c8837e344f5dfc9cf/alone/_w1700.jpg" alt="Community Iftar" class="w-full h-48 object-cover rounded-lg mb-4">
-                    <div class="flex items-center gap-4 text-white/60">
-                        <button class="hover:text-[#DAA520] transition-colors duration-300">❤️ Like</button>
-                        <button class="hover:text-[#DAA520] transition-colors duration-300">💬 Comment</button>
-                        <button class="hover:text-[#DAA520] transition-colors duration-300">↗️ Share</button>
-                    </div>
-                </div>
 
-                <!-- Experience Card 2 -->
+            <div class="grid md:grid-cols-2 gap-8">
+                @foreach ($posts as $post)
                 <div class="bg-black/40 backdrop-blur-lg rounded-2xl p-6 border border-[#DAA520]/20 hover:border-[#DAA520]/40 transition-all duration-300">
                     <div class="flex items-start gap-4 mb-4">
                         <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="User Avatar" class="w-10 h-10 rounded-full">
                         <div>
-                            <h3 class="text-[#DAA520] font-semibold">Mohammed Rahman</h3>
-                            <p class="text-white/60 text-sm">5 hours ago</p>
+                            <h3 class="text-[#DAA520] font-semibold">Ramadan</h3>
                         </div>
                     </div>
-                    <h4 class="text-white text-xl font-semibold mb-4">Finding Peace in Prayer</h4>
-                    <p class="text-white/80 mb-4">The tranquility of praying Taraweeh at our local mosque has been the highlight of my Ramadan. The sense of community and spiritual connection is indescribable...</p>
-                    <img src="https://iqraonline.com/wp-content/uploads/2022/06/What-is-the-importance-of-night-prayer.jpg" alt="Mosque Interior" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <h4 class="text-white text-xl font-semibold mb-4">{{ $post->title }}</h4>
+                    <p class="text-white/80 mb-4">{{ $post->content }}</p>
+                    <img src="{{$post->image}}" alt="Community Iftar" class="w-full h-48 object-cover rounded-lg mb-4">
                     <div class="flex items-center gap-4 text-white/60">
                         <button class="hover:text-[#DAA520] transition-colors duration-300">❤️ Like</button>
                         <button class="hover:text-[#DAA520] transition-colors duration-300">💬 Comment</button>
                         <button class="hover:text-[#DAA520] transition-colors duration-300">↗️ Share</button>
                     </div>
                 </div>
+                @endforeach
             </div>
+
         </section>
     </main>
 
