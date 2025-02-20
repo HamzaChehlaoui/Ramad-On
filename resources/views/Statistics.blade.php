@@ -105,8 +105,8 @@
             <div class="bg-black/40 backdrop-blur-lg rounded-2xl p-6 border border-[#DAA520]/20 hover:border-[#DAA520]/40 transition-all duration-300">
                 <div class="flex items-start justify-between">
                     <div>
-                        <h3 class="text-white/70 text-lg">Engagement Rate</h3>
-                        <p class="text-4xl font-bold text-white mt-2">67.8%</p>
+                        <h3 class="text-white/70 text-lg">Total Comment</h3>
+                        <p class="text-4xl font-bold text-white mt-2">67</p>
                     </div>
                     <div class="w-12 h-12 rounded-full bg-[#DAA520]/20 flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#DAA520]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -124,94 +124,6 @@
         </div>
 
 
-
-        <!-- Popular Recipes Table -->
-        <div class="mb-20">
-            <h2 class="text-3xl font-bold text-white mb-8">
-                Most Popular <span class="text-[#DAA520]">Recipes</span>
-            </h2>
-            <div class="bg-black/40 backdrop-blur-lg rounded-2xl p-6 border border-[#DAA520]/20 overflow-x-auto">
-                <table class="w-full text-left">
-                    <thead>
-                        <tr class="border-b border-[#DAA520]/20">
-                            <th class="py-4 text-[#DAA520]">Rank</th>
-                            <th class="py-4 text-[#DAA520]">Recipe Name</th>
-                            <th class="py-4 text-[#DAA520]">Category</th>
-                            <th class="py-4 text-[#DAA520]">Rating</th>
-                            <th class="py-4 text-[#DAA520]">Saves</th>
-                            <th class="py-4 text-[#DAA520]">Author</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b border-gray-800 hover:bg-black/20">
-                            <td class="py-4 text-white">#1</td>
-                            <td class="py-4 text-white">Traditional Harira Soup</td>
-                            <td class="py-4 text-white/70">Iftar</td>
-                            <td class="py-4">
-                                <div class="flex text-[#DAA520]">
-                                    <span>★★★★★</span>
-                                    <span class="ml-2 text-white/70">(4.9)</span>
-                                </div>
-                            </td>
-                            <td class="py-4 text-white">3,724</td>
-                            <td class="py-4 text-white/70">Amina K.</td>
-                        </tr>
-                        <tr class="border-b border-gray-800 hover:bg-black/20">
-                            <td class="py-4 text-white">#2</td>
-                            <td class="py-4 text-white">Date & Almond Energy Balls</td>
-                            <td class="py-4 text-white/70">Suhoor</td>
-                            <td class="py-4">
-                                <div class="flex text-[#DAA520]">
-                                    <span>★★★★★</span>
-                                    <span class="ml-2 text-white/70">(4.8)</span>
-                                </div>
-                            </td>
-                            <td class="py-4 text-white">3,156</td>
-                            <td class="py-4 text-white/70">Yusuf M.</td>
-                        </tr>
-                        <tr class="border-b border-gray-800 hover:bg-black/20">
-                            <td class="py-4 text-white">#3</td>
-                            <td class="py-4 text-white">Chicken Biryani</td>
-                            <td class="py-4 text-white/70">Iftar</td>
-                            <td class="py-4">
-                                <div class="flex text-[#DAA520]">
-                                    <span>★★★★☆</span>
-                                    <span class="ml-2 text-white/70">(4.7)</span>
-                                </div>
-                            </td>
-                            <td class="py-4 text-white">2,845</td>
-                            <td class="py-4 text-white/70">Fatima Z.</td>
-                        </tr>
-                        <tr class="border-b border-gray-800 hover:bg-black/20">
-                            <td class="py-4 text-white">#4</td>
-                            <td class="py-4 text-white">Authentic Baklava</td>
-                            <td class="py-4 text-white/70">Dessert</td>
-                            <td class="py-4">
-                                <div class="flex text-[#DAA520]">
-                                    <span>★★★★☆</span>
-                                    <span class="ml-2 text-white/70">(4.6)</span>
-                                </div>
-                            </td>
-                            <td class="py-4 text-white">2,412</td>
-                            <td class="py-4 text-white/70">Omar H.</td>
-                        </tr>
-                        <tr class="border-b border-gray-800 hover:bg-black/20">
-                            <td class="py-4 text-white">#5</td>
-                            <td class="py-4 text-white">Refreshing Jallab</td>
-                            <td class="py-4 text-white/70">Beverage</td>
-                            <td class="py-4">
-                                <div class="flex text-[#DAA520]">
-                                    <span>★★★★☆</span>
-                                    <span class="ml-2 text-white/70">(4.5)</span>
-                                </div>
-                            </td>
-                            <td class="py-4 text-white">2,289</td>
-                            <td class="py-4 text-white/70">Layla T.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
 
     </main>

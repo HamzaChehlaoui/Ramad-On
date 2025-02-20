@@ -47,7 +47,11 @@ class RecipeController extends Controller
     return redirect('Recipes');
 }
 
-
+public function filter($categoryId)
+{
+    $recipes = Recipe::where('category_id', $categoryId)->with('category')->get();
+    return response()->json($recipes);
+}
 
 }
 

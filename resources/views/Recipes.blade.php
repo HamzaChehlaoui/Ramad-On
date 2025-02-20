@@ -18,6 +18,14 @@
         }
     </script>
 </head>
+<style>
+
+.active-filter {
+    background-color: #B8860B !important; 
+    color: white !important;
+}
+
+</style>
 <body class="min-h-screen bg-[#0A0A0A] overflow-x-hidden">
     <!-- Animated Background -->
     <div class="fixed inset-0 bg-[radial-gradient(circle_at_50%_50%,_#1a1a1a_0%,_#0A0A0A_100%)]"></div>
@@ -55,11 +63,13 @@
         <!-- Filtering System -->
         <div class="flex flex-wrap justify-center gap-4 mb-12">
             @foreach($category as $row)
-            <button id="all-filter" class="px-6 py-3 bg-[#DAA520] text-black rounded-full font-medium hover:bg-[#B8860B] transition-colors duration-300">
-                {{$row->name}}
+            <button class="filter-button px-6 py-3 bg-[#DAA520] text-black rounded-full font-medium hover:bg-[#B8860B] transition-colors duration-300"
+                data-category-id="{{ $row->id }}">
+                {{ $row->name }}
             </button>
             @endforeach
         </div>
+
 
         <!-- Add Recipe Button -->
         <div class="flex justify-center mb-16">
@@ -72,7 +82,7 @@
         </div>
 
         <!-- Recipe Grid -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div id="recipe-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($recipes as $recipe)
             <!-- Starter 1 -->
             <div class="recipe-card starter-recipe group bg-black/40 backdrop-blur-lg rounded-2xl overflow-hidden border border-[#DAA520]/20 hover:border-[#DAA520]/40 transition-all duration-300">
@@ -273,6 +283,52 @@
                 closeModal();
             }
         });
+document.addEventListener("DOMContentLoaded", function() {
+    let filterButtons = document.querySelectorAll('.filter-button');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            filterButtons.forEach(btn => btn.classList.remove('active-filter'));
+
+            this.classList.add('active-filter');
+
+            let categoryId = this.getAttribute('data-category-id');
+
+            fetch(`/recipes/filter/${categoryId}`)
+            .then(response => response.json())
+            .then(data => {
+                let recipeContainer = document.getElementById('recipe-container');
+                if (!recipeContainer) return;
+
+                recipeContainer.innerHTML = '';
+
+                data.forEach(recipe => {
+                    let recipeCard = `
+                        <div class="recipe-card group bg-black/40 backdrop-blur-lg rounded-2xl overflow-hidden border border-[#DAA520]/20 hover:border-[#DAA520]/40 transition-all duration-300">
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="/storage/${recipe.image}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"/>
+                                <div class="absolute top-4 right-4 px-4 py-1 bg-[#DAA520]/80 text-black rounded-full text-sm font-medium">
+                                    ${recipe.category.name}
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-[#DAA520] text-xl font-semibold mb-2">${recipe.title}</h3>
+                                <p class="text-white/80 mb-4">${recipe.content}</p>
+                                <a href="/recipe/${recipe.id}" class="text-[#DAA520] hover:underline flex items-center gap-1">
+                                    View Recipe
+                                </a>
+                            </div>
+                        </div>`;
+
+                    recipeContainer.innerHTML += recipeCard;
+                });
+            })
+            .catch(error => console.error('Error fetching recipes:', error));
+        });
+    });
+});
+</script>
+
     </script>
 </body>
 </html>
