@@ -96,7 +96,7 @@
                     </div>
                     <h4 class="text-white text-xl font-semibold mb-4">{{ $post->title }}</h4>
                     <p class="text-white/80 mb-4">{{ $post->content }}</p>
-                    <img src="{{$post->image}}" alt="Community Iftar" class="w-full h-48 object-cover rounded-lg mb-4">
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="Community Iftar" class="w-full h-48 object-cover rounded-lg mb-4">
                     <div class="flex items-center gap-4 text-white/60">
                         <button class="hover:text-[#DAA520] transition-colors duration-300">❤️ Like</button>
                         <button class="hover:text-[#DAA520] transition-colors duration-300">💬 Comment</button>
