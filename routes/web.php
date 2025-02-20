@@ -22,3 +22,4 @@ Route::get('/Experiences', [ExperienceController::class, 'index'])->name('posts'
 Route::get('/Recipes', [RecipeController::class, 'index'])->name('recipes');
 Route::get('/Statistics', [StatisticsController::class, 'index'])->name('statistics');
 Route::post('/posts', [ExperienceController::class, 'store'])->name('posts.store');
+Route::post('/recipes', [RecipeController::class, 'store'])->name('recipes.store');

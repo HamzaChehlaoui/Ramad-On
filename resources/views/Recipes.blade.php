@@ -26,7 +26,6 @@
     <div class="fixed inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2z\' fill=\'%23DAA520\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');"></div>
 
     <!-- Header -->
-    <!-- Header -->
     <header class="relative p-6 md:p-8">
         <nav class="max-w-7xl mx-auto flex items-center justify-between">
             <a href="/" class="text-white font-bold text-xl tracking-wider">
@@ -55,26 +54,16 @@
 
         <!-- Filtering System -->
         <div class="flex flex-wrap justify-center gap-4 mb-12">
+            @foreach($category as $row)
             <button id="all-filter" class="px-6 py-3 bg-[#DAA520] text-black rounded-full font-medium hover:bg-[#B8860B] transition-colors duration-300">
-                All Recipes
+                {{$row->name}}
             </button>
-            <button id="starters-filter" class="px-6 py-3 border border-[#DAA520] text-[#DAA520] rounded-full font-medium hover:bg-[#DAA520]/10 transition-all duration-300">
-                Starters
-            </button>
-            <button id="mains-filter" class="px-6 py-3 border border-[#DAA520] text-[#DAA520] rounded-full font-medium hover:bg-[#DAA520]/10 transition-all duration-300">
-                Main Courses
-            </button>
-            <button id="desserts-filter" class="px-6 py-3 border border-[#DAA520] text-[#DAA520] rounded-full font-medium hover:bg-[#DAA520]/10 transition-all duration-300">
-                Desserts
-            </button>
-            <button id="drinks-filter" class="px-6 py-3 border border-[#DAA520] text-[#DAA520] rounded-full font-medium hover:bg-[#DAA520]/10 transition-all duration-300">
-                Drinks
-            </button>
+            @endforeach
         </div>
 
         <!-- Add Recipe Button -->
         <div class="flex justify-center mb-16">
-            <button class="px-8 py-4 bg-black/40 backdrop-blur-sm border border-[#DAA520] text-[#DAA520] rounded-full font-medium hover:bg-[#DAA520] hover:text-black transition-all duration-300 flex items-center gap-2">
+            <button id="addRecipeBtn" class="px-8 py-4 bg-black/40 backdrop-blur-sm border border-[#DAA520] text-[#DAA520] rounded-full font-medium hover:bg-[#DAA520] hover:text-black transition-all duration-300 flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
                 </svg>
@@ -84,22 +73,18 @@
 
         <!-- Recipe Grid -->
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @foreach($recipes as $recipe)
             <!-- Starter 1 -->
             <div class="recipe-card starter-recipe group bg-black/40 backdrop-blur-lg rounded-2xl overflow-hidden border border-[#DAA520]/20 hover:border-[#DAA520]/40 transition-all duration-300">
                 <div class="relative h-48 overflow-hidden">
-                    <img src="/api/placeholder/600/360" alt="Lentil Soup" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"/>
+                    <img src="{{ asset('storage/' . $recipe->image) }}" alt="Lentil Soup" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"/>
                     <div class="absolute top-4 right-4 px-4 py-1 bg-[#DAA520]/80 text-black rounded-full text-sm font-medium">
-                        Starter
+                        {{$recipe->category->name}}
                     </div>
                 </div>
                 <div class="p-6">
-                    <h3 class="text-[#DAA520] text-xl font-semibold mb-2">Lentil Soup (Shorbat Adas)</h3>
-                    <div class="flex items-center gap-2 text-white/60 text-sm mb-3">
-                        <span>Prep: 15 mins</span>
-                        <span>•</span>
-                        <span>Cook: 30 mins</span>
-                    </div>
-                    <p class="text-white/80 mb-4">A hearty red lentil soup seasoned with cumin and topped with crispy pita chips and lemon.</p>
+                    <h3 class="text-[#DAA520] text-xl font-semibold mb-2">{{$recipe->title}}</h3>
+                    <p class="text-white/80 mb-4">{{$recipe->content}}</p>
                     <a href="#" class="text-[#DAA520] hover:underline flex items-center gap-1">
                         View Recipe
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
@@ -108,131 +93,7 @@
                     </a>
                 </div>
             </div>
-
-            <!-- Main Course 1 -->
-            <div class="recipe-card main-recipe group bg-black/40 backdrop-blur-lg rounded-2xl overflow-hidden border border-[#DAA520]/20 hover:border-[#DAA520]/40 transition-all duration-300">
-                <div class="relative h-48 overflow-hidden">
-                    <img src="/api/placeholder/600/361" alt="Lamb Tagine" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"/>
-                    <div class="absolute top-4 right-4 px-4 py-1 bg-[#DAA520]/80 text-black rounded-full text-sm font-medium">
-                        Main Course
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-[#DAA520] text-xl font-semibold mb-2">Moroccan Lamb Tagine</h3>
-                    <div class="flex items-center gap-2 text-white/60 text-sm mb-3">
-                        <span>Prep: 25 mins</span>
-                        <span>•</span>
-                        <span>Cook: 2 hrs</span>
-                    </div>
-                    <p class="text-white/80 mb-4">Tender lamb with dried fruits, honey, and aromatic spices simmered to perfection.</p>
-                    <a href="#" class="text-[#DAA520] hover:underline flex items-center gap-1">
-                        View Recipe
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Dessert 1 -->
-            <div class="recipe-card dessert-recipe group bg-black/40 backdrop-blur-lg rounded-2xl overflow-hidden border border-[#DAA520]/20 hover:border-[#DAA520]/40 transition-all duration-300">
-                <div class="relative h-48 overflow-hidden">
-                    <img src="/api/placeholder/600/362" alt="Kunafa" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"/>
-                    <div class="absolute top-4 right-4 px-4 py-1 bg-[#DAA520]/80 text-black rounded-full text-sm font-medium">
-                        Dessert
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-[#DAA520] text-xl font-semibold mb-2">Kunafa with Sweet Cheese</h3>
-                    <div class="flex items-center gap-2 text-white/60 text-sm mb-3">
-                        <span>Prep: 30 mins</span>
-                        <span>•</span>
-                        <span>Cook: 45 mins</span>
-                    </div>
-                    <p class="text-white/80 mb-4">Crispy shredded phyllo dough layered with sweet cheese and soaked in aromatic sugar syrup.</p>
-                    <a href="#" class="text-[#DAA520] hover:underline flex items-center gap-1">
-                        View Recipe
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Drink 1 -->
-            <div class="recipe-card drink-recipe group bg-black/40 backdrop-blur-lg rounded-2xl overflow-hidden border border-[#DAA520]/20 hover:border-[#DAA520]/40 transition-all duration-300">
-                <div class="relative h-48 overflow-hidden">
-                    <img src="/api/placeholder/600/363" alt="Jallab" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"/>
-                    <div class="absolute top-4 right-4 px-4 py-1 bg-[#DAA520]/80 text-black rounded-full text-sm font-medium">
-                        Drink
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-[#DAA520] text-xl font-semibold mb-2">Jallab Date Syrup Drink</h3>
-                    <div class="flex items-center gap-2 text-white/60 text-sm mb-3">
-                        <span>Prep: 10 mins</span>
-                        <span>•</span>
-                        <span>Serves: 4</span>
-                    </div>
-                    <p class="text-white/80 mb-4">A refreshing drink made with date syrup, rose water, and topped with pine nuts.</p>
-                    <a href="#" class="text-[#DAA520] hover:underline flex items-center gap-1">
-                        View Recipe
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Starter 2 -->
-            <div class="recipe-card starter-recipe group bg-black/40 backdrop-blur-lg rounded-2xl overflow-hidden border border-[#DAA520]/20 hover:border-[#DAA520]/40 transition-all duration-300">
-                <div class="relative h-48 overflow-hidden">
-                    <img src="/api/placeholder/600/364" alt="Samosas" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"/>
-                    <div class="absolute top-4 right-4 px-4 py-1 bg-[#DAA520]/80 text-black rounded-full text-sm font-medium">
-                        Starter
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-[#DAA520] text-xl font-semibold mb-2">Vegetable Samosas</h3>
-                    <div class="flex items-center gap-2 text-white/60 text-sm mb-3">
-                        <span>Prep: 40 mins</span>
-                        <span>•</span>
-                        <span>Cook: 20 mins</span>
-                    </div>
-                    <p class="text-white/80 mb-4">Crispy pastry triangles filled with spiced potatoes, peas, and aromatic spices.</p>
-                    <a href="#" class="text-[#DAA520] hover:underline flex items-center gap-1">
-                        View Recipe
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Main 2 -->
-            <div class="recipe-card main-recipe group bg-black/40 backdrop-blur-lg rounded-2xl overflow-hidden border border-[#DAA520]/20 hover:border-[#DAA520]/40 transition-all duration-300">
-                <div class="relative h-48 overflow-hidden">
-                    <img src="/api/placeholder/600/365" alt="Chicken Biryani" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"/>
-                    <div class="absolute top-4 right-4 px-4 py-1 bg-[#DAA520]/80 text-black rounded-full text-sm font-medium">
-                        Main Course
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-[#DAA520] text-xl font-semibold mb-2">Chicken Biryani</h3>
-                    <div class="flex items-center gap-2 text-white/60 text-sm mb-3">
-                        <span>Prep: 30 mins</span>
-                        <span>•</span>
-                        <span>Cook: 1 hr</span>
-                    </div>
-                    <p class="text-white/80 mb-4">Fragrant basmati rice layered with marinated chicken, fried onions, and aromatic spices.</p>
-                    <a href="#" class="text-[#DAA520] hover:underline flex items-center gap-1">
-                        View Recipe
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <!-- Pagination -->
@@ -287,5 +148,131 @@
         </svg>
     </button>
 
+    <!-- Recipe Form Modal -->
+    <div id="recipeFormModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none">
+        <div class="bg-[#0e0e0e] border border-[#DAA520]/40 rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto p-8 transform transition-transform duration-300 scale-95">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-[#DAA520]">Add New Recipe</h2>
+                <button id="closeModalBtn" class="text-white/60 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <form method="POST" action="{{ route('recipes.store') }}"  enctype="multipart/form-data" class="space-y-6">
+                @csrf
+
+                <div>
+                    <label for="title" class="block text-white/80 mb-2">Recipe Title</label>
+                    <input type="text" id="title" name="title" required class="w-full bg-black/50 border border-[#DAA520]/30 rounded-lg px-4 py-3 text-white focus:border-[#DAA520] focus:outline-none focus:ring-1 focus:ring-[#DAA520]">
+                </div>
+
+                <div>
+                    <label for="category_id" class="block text-white/80 mb-2">Category</label>
+                    <select id="category_id" name="category_id" required class="w-full bg-black/50 border border-[#DAA520]/30 rounded-lg px-4 py-3 text-white focus:border-[#DAA520] focus:outline-none focus:ring-1 focus:ring-[#DAA520]">
+                        <option value="" disabled selected>Select a category</option>
+                        @foreach($category as $cat)
+                        <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+
+
+                <div>
+                    <label for="ingredients" class="block text-white/80 mb-2">Ingredients (one per line)</label>
+                    <textarea id="ingredients" name="content" rows="5" required class="w-full bg-black/50 border border-[#DAA520]/30 rounded-lg px-4 py-3 text-white focus:border-[#DAA520] focus:outline-none focus:ring-1 focus:ring-[#DAA520]"></textarea>
+                </div>
+
+                <div>
+                    <label for="image" class="block text-white/80 mb-2">Recipe Image</label>
+                    <div class="border-2 border-dashed border-[#DAA520]/30 rounded-lg p-8 text-center cursor-pointer hover:border-[#DAA520]/60 transition-colors duration-300">
+                        <input type="file" id="image" name="image" accept="image/*" class="hidden" required>
+                        <label for="image" class="cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto text-[#DAA520]/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <p class="mt-2 text-white/80">Click to upload an image</p>
+                            <p class="text-white/60 text-sm">PNG, JPG or WEBP (max. 2MB)</p>
+                        </label>
+                        <div id="previewContainer" class="mt-4 hidden">
+                            <img id="imagePreview" class="max-h-40 mx-auto rounded" alt="Image preview" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 pt-4">
+                    <button type="button" id="cancelBtn" class="flex-1 px-6 py-3 bg-black/40 border border-[#DAA520]/40 text-white/80 rounded-lg hover:bg-black/60 transition-colors duration-300">
+                        Cancel
+                    </button>
+                    <button type="submit" class="flex-1 px-6 py-3 bg-[#DAA520] text-black rounded-lg hover:bg-[#B8860B] transition-colors duration-300 font-medium">
+                        Submit Recipe
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modal = document.getElementById('recipeFormModal');
+        const addRecipeBtn = document.getElementById('addRecipeBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+
+        function openModal() {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100');
+            modal.querySelector('.scale-95').classList.remove('scale-95');
+            modal.querySelector('.scale-95').classList.add('scale-100');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.querySelector('div').classList.remove('scale-100');
+            modal.querySelector('div').classList.add('scale-95');
+            document.body.style.overflow = '';
+        }
+
+        addRecipeBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+        cancelBtn.addEventListener('click', closeModal);
+
+        // Image preview functionality
+        const imageInput = document.getElementById('image');
+        const previewContainer = document.getElementById('previewContainer');
+        const imagePreview = document.getElementById('imagePreview');
+
+        imageInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    previewContainer.classList.remove('hidden');
+                }
+                reader.readAsDataURL(file);
+            } else {
+                previewContainer.classList.add('hidden');
+            }
+        });
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Escape key to close modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !modal.classList.contains('pointer-events-none')) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
