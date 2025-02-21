@@ -27,3 +27,4 @@ Route::post('/recipes', [RecipeController::class, 'store'])->name('recipes.store
 Route::get('/recipes/filter/{category}', [RecipeController::class, 'filter']);
 Route::get('/Statistics', [StatisticsController::class, 'index'])->name('statistics');
 Route::post('/posts/{postId}/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::get('/recipe/{id}', [RecipeController::class, 'show'])->name('show');

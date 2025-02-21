@@ -52,6 +52,12 @@ public function filter($categoryId)
     $recipes = Recipe::where('category_id', $categoryId)->with('category')->get();
     return response()->json($recipes);
 }
+public function show($id)
+{
+    $recipe = Recipe::findOrFail($id);
+    return view('show', compact('recipe'));
+}
+
 
 }
 

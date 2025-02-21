@@ -21,7 +21,7 @@
 <style>
 
 .active-filter {
-    background-color: #B8860B !important; 
+    background-color: #B8860B !important;
     color: white !important;
 }
 
@@ -95,12 +95,13 @@
                 <div class="p-6">
                     <h3 class="text-[#DAA520] text-xl font-semibold mb-2">{{$recipe->title}}</h3>
                     <p class="text-white/80 mb-4">{{$recipe->content}}</p>
-                    <a href="#" class="text-[#DAA520] hover:underline flex items-center gap-1">
+                    <a href="{{ route('show', $recipe->id) }}" class="text-[#DAA520] hover:underline flex items-center gap-1">
                         View Recipe
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </a>
+
                 </div>
             </div>
             @endforeach
@@ -151,12 +152,6 @@
         </div>
     </footer>
 
-    <!-- Mobile Menu Button -->
-    <button class="md:hidden fixed bottom-8 right-8 p-4 bg-black/80 backdrop-blur-lg rounded-full text-[#DAA520] hover:bg-[#DAA520] hover:text-black transition-all duration-300">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-    </button>
 
     <!-- Recipe Form Modal -->
     <div id="recipeFormModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none">
