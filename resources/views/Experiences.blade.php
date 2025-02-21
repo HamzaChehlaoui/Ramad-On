@@ -84,190 +84,81 @@
                 Community <span class="text-[#DAA520]">Stories</span>
             </h2>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                @foreach ($posts as $post)
-                <div class="bg-black/40 backdrop-blur-lg rounded-2xl p-6 border border-[#DAA520]/20 hover:border-[#DAA520]/40 transition-all duration-300">
-                    <div class="flex items-start gap-4 mb-4">
-                        <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="User Avatar" class="w-10 h-10 rounded-full">
-                        <div>
-                            <h3 class="text-[#DAA520] font-semibold">Ramadan</h3>
-                        </div>
-                    </div>
-                    <h4 class="text-white text-xl font-semibold mb-4">{{ $post->title }}</h4>
-                    <p class="text-white/80 mb-4">{{ $post->content }}</p>
-                    <img src="{{ asset('storage/' . $post->image) }}" alt="Community Iftar" class="w-full h-48 object-cover rounded-lg mb-4">
-                    <div class="flex items-center gap-4 text-white/60">
-                        <button class="hover:text-[#DAA520] transition-colors duration-300">❤️ Like</button>
-                        <button class="hover:text-[#DAA520] transition-colors duration-300">💬 Comment</button>
-                        <button class="hover:text-[#DAA520] transition-colors duration-300">↗️ Share</button>
-                    </div>
-                </div>
-                @endforeach
-            </div>
+
 
         </section>
     </main>
 
-    <!-- Mobile Menu Button -->
-    <button class="md:hidden fixed bottom-8 right-8 p-4 bg-black/80 backdrop-blur-lg rounded-full text-[#DAA520] hover:bg-[#DAA520] hover:text-black transition-all duration-300">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-    </button>
+<!-- Other sections of the page remain unchanged -->
 
-    <script>
+<!-- Experiences Grid -->
+<section>
+    <h2 class="text-4xl font-bold text-white mb-12">
+        Community <span class="text-[#DAA520]">Stories</span>
+    </h2>
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Select all comment buttons
-    const commentButtons = document.querySelectorAll('button:nth-child(2)');
+    <div class="grid md:grid-cols-2 gap-8">
+        @foreach ($posts as $post)
+        <div class="bg-black/40 backdrop-blur-lg rounded-2xl p-6 border border-[#DAA520]/20 hover:border-[#DAA520]/40 transition-all duration-300">
+            <div class="flex items-start gap-4 mb-4">
+                <img src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="User Avatar" class="w-10 h-10 rounded-full">
+                <div>
+                    <h3 class="text-[#DAA520] font-semibold">Ramadan</h3>
+                </div>
+            </div>
+            <h4 class="text-white text-xl font-semibold mb-4">{{ $post->title }}</h4>
+            <p class="text-white/80 mb-4">{{ $post->content }}</p>
+            <img src="{{ asset('storage/' . $post->image) }}" alt="Community Iftar" class="w-full h-48 object-cover rounded-lg mb-4">
+            <div class="flex items-center gap-4 text-white/60">
+                <button class="hover:text-[#DAA520] transition-colors duration-300">❤️ Like</button>
+                <button class="hover:text-[#DAA520] transition-colors duration-300" onclick="toggleCommentSection({{ $post->id }})">💬 Comment</button>
+                <button class="hover:text-[#DAA520] transition-colors duration-300">↗️ Share</button>
+            </div>
 
-    // Sample comments data (in a real application, this would come from your database)
-    const sampleComments = {
-        0: [
-            { name: "Sarah Johnson", comment: "Great insights! This really made me think.", timestamp: "2 hours ago" },
-            { name: "Mike Chen", comment: "I disagree with point #3, but overall good post.", timestamp: "5 hours ago" }
-        ],
-        1: [
-            { name: "Alex Rodriguez", comment: "This changed my perspective, thanks for sharing!", timestamp: "1 day ago" }
-        ]
-    };
-
-    commentButtons.forEach((button, index) => {
-        button.addEventListener('click', function() {
-            const postCard = this.closest('.bg-black\\/40');
-
-            // Check if comment box already exists
-            if (!postCard.querySelector('.comment-form')) {
-                // Create comment form container
-                const commentContainer = document.createElement('div');
-                commentContainer.className = 'comment-container mt-4';
-
-                // Create view comments section
-                const viewCommentsBox = document.createElement('div');
-                viewCommentsBox.className = 'view-comments mb-4 p-4 bg-black/60 rounded-lg border border-[#DAA520]/20';
-
-                // Get comments for this post (if any)
-                const postComments = sampleComments[index] || [];
-
-                if (postComments.length > 0) {
-                    // Create comments list
-                    const commentsList = document.createElement('div');
-                    commentsList.className = 'comments-list space-y-3';
-
-                    // Comment header
-                    const commentsHeader = document.createElement('div');
-                    commentsHeader.className = 'flex justify-between items-center mb-3';
-                    commentsHeader.innerHTML = `
-                        <h3 class="text-white font-medium">Comments (${postComments.length})</h3>
-                    `;
-                    viewCommentsBox.appendChild(commentsHeader);
-
-                    // Add each comment
-                    postComments.forEach(commentData => {
-                        const commentItem = document.createElement('div');
-                        commentItem.className = 'comment-item p-3 bg-black/40 rounded border border-[#DAA520]/10';
-                        commentItem.innerHTML = `
+            <!-- Comment Section for this post -->
+            <div id="comment-section-{{ $post->id }}" class="comment-section hidden mt-4">
+                <!-- Display Comments -->
+                <div class="view-comments mb-4 p-4 bg-black/60 rounded-lg border border-[#DAA520]/20">
+                    <h3 class="text-white font-medium">Comments ({{ count($post->comments) }})</h3>
+                    @foreach ($post->comments as $comment)
+                        <div class="comment-item p-3 bg-black/40 rounded border border-[#DAA520]/10">
                             <div class="flex justify-between">
-                                <span class="font-medium text-[#DAA520]">${commentData.name}</span>
-                                <span class="text-white/50 text-xs">${commentData.timestamp}</span>
+                                <span class="font-medium text-[#DAA520]">{{ $comment->name }}</span>
+                                <span class="text-white/50 text-xs">{{ $comment->created_at->diffForHumans() }}</span>
                             </div>
-                            <p class="mt-1 text-white/90">${commentData.comment}</p>
-                        `;
-                        commentsList.appendChild(commentItem);
-                    });
-
-                    viewCommentsBox.appendChild(commentsList);
-                } else {
-                    // No comments message
-                    viewCommentsBox.innerHTML = `
-                        <p class="text-white/50 text-center py-2">No comments yet. Be the first to comment!</p>
-                    `;
-                }
-
-                // Create comment form
-                const commentBox = document.createElement('div');
-                commentBox.className = 'comment-form p-4 bg-black/60 rounded-lg border border-[#DAA520]/20';
-                commentBox.innerHTML = `
-                    <div class="flex flex-col gap-3">
-                        <h3 class="text-white font-medium">Add a comment</h3>
-                        <input type="text" placeholder="Your name" class="bg-black/40 text-white p-2 rounded-lg border border-[#DAA520]/20 focus:border-[#DAA520] outline-none">
-                        <textarea placeholder="Add your comment..." class="bg-black/40 text-white p-2 rounded-lg border border-[#DAA520]/20 focus:border-[#DAA520] outline-none min-h-[80px]"></textarea>
-                        <div class="flex justify-end gap-2">
-                            <button class="cancel-comment px-4 py-2 rounded-lg text-white/80 hover:text-white">Cancel</button>
-                            <button class="submit-comment px-4 py-2 rounded-lg bg-[#DAA520]/80 hover:bg-[#DAA520] text-black font-medium">Post Comment</button>
+                            <p class="mt-1 text-white/90">{{ $comment->content }}</p>
                         </div>
-                    </div>
-                `;
+                    @endforeach
+                </div>
 
-                // Append both boxes to the container
-                commentContainer.appendChild(viewCommentsBox);
-                commentContainer.appendChild(commentBox);
-
-                // Append container to post card
-                postCard.appendChild(commentContainer);
-
-                // Handle cancel button
-                commentBox.querySelector('.cancel-comment').addEventListener('click', function() {
-                    commentContainer.remove();
-                });
-
-                // Handle submit button (with dynamic update to comments view)
-                commentBox.querySelector('.submit-comment').addEventListener('click', function() {
-                    const name = commentBox.querySelector('input').value;
-                    const comment = commentBox.querySelector('textarea').value;
-
-                    if (name && comment) {
-                        // Here you would typically send this data to your server
-                        console.log(`Post ${index}: Comment by ${name}: ${comment}`);
-
-                        // Add the new comment to the view (for demo purposes)
-                        if (viewCommentsBox.querySelector('.text-center')) {
-                            // Remove "no comments" message if it exists
-                            viewCommentsBox.innerHTML = `
-                                <div class="flex justify-between items-center mb-3">
-                                    <h3 class="text-white font-medium">Comments (1)</h3>
-                                </div>
-                                <div class="comments-list space-y-3"></div>
-                            `;
-                        }
-
-                        const commentsList = viewCommentsBox.querySelector('.comments-list');
-                        const commentCount = viewCommentsBox.querySelector('h3');
-                        const currentCount = parseInt(commentCount.textContent.match(/\d+/)[0]);
-                        commentCount.textContent = `Comments (${currentCount + 1})`;
-
-                        // Create and add the new comment
-                        const newComment = document.createElement('div');
-                        newComment.className = 'comment-item p-3 bg-black/40 rounded border border-[#DAA520]/10 animate-fadeIn';
-                        newComment.innerHTML = `
-                            <div class="flex justify-between">
-                                <span class="font-medium text-[#DAA520]">${name}</span>
-                                <span class="text-white/50 text-xs">Just now</span>
+                <!-- Add New Comment Form -->
+                <div class="comment-form p-4 bg-black/60 rounded-lg border border-[#DAA520]/20">
+                    <form action="{{ route('comments.store', $post->id) }}" method="POST">
+                        @csrf
+                        <div class="flex flex-col gap-3">
+                            <input type="text" name="name" placeholder="Your name" class="bg-black/40 text-white p-2 rounded-lg border border-[#DAA520]/20 focus:border-[#DAA520] outline-none" required>
+                            <textarea name="comment" placeholder="Add your comment..." class="bg-black/40 text-white p-2 rounded-lg border border-[#DAA520]/20 focus:border-[#DAA520] outline-none min-h-[80px]" required></textarea>
+                            <div class="flex justify-end gap-2">
+                                <button type="button" class="cancel-comment px-4 py-2 rounded-lg text-white/80 hover:text-white" onclick="toggleCommentSection({{ $post->id }})">Cancel</button>
+                                <button type="submit" class="submit-comment px-4 py-2 rounded-lg bg-[#DAA520]/80 hover:bg-[#DAA520] text-black font-medium">Post Comment</button>
                             </div>
-                            <p class="mt-1 text-white/90">${comment}</p>
-                        `;
-                        commentsList.prepend(newComment);
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</section>
 
-                        // Show success message
-                        const successMsg = document.createElement('div');
-                        successMsg.className = 'text-green-400 mt-2';
-                        successMsg.textContent = 'Comment posted successfully!';
-                        commentBox.appendChild(successMsg);
+<!-- Mobile Menu Button and other footer content remains unchanged -->
 
-                        // Clear form
-                        commentBox.querySelector('input').value = '';
-                        commentBox.querySelector('textarea').value = '';
-
-                        // Remove success message after delay
-                        setTimeout(() => {
-                            successMsg.remove();
-                        }, 2000);
-                    }
-                });
-            }
-        });
-    });
-});
-    </script>
+<script>
+// Function to toggle visibility of the comment section
+function toggleCommentSection(postId) {
+    const commentSection = document.getElementById(`comment-section-${postId}`);
+    commentSection.classList.toggle('hidden');
+}
+</script>
 </body>
 </html>

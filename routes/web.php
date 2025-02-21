@@ -5,6 +5,7 @@ use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,3 +26,4 @@ Route::post('/posts', [ExperienceController::class, 'store'])->name('posts.store
 Route::post('/recipes', [RecipeController::class, 'store'])->name('recipes.store');
 Route::get('/recipes/filter/{category}', [RecipeController::class, 'filter']);
 Route::get('/Statistics', [StatisticsController::class, 'index'])->name('statistics');
+Route::post('/posts/{postId}/comments', [CommentController::class, 'store'])->name('comments.store');
