@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ramadan Experiences</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -118,16 +117,68 @@
 
     <script>
         // Animate elements on page load
-        gsap.from("nav", { y: -50, opacity: 0, duration: 1, ease: "power3.out" });
-        gsap.from(".text-[#DAA520]", { opacity: 0, duration: 1, delay: 0.5, stagger: 0.2 });
-        gsap.from("form", { y: 50, opacity: 0, duration: 1, delay: 0.8 });
-        gsap.from(".grid > div", {
-            y: 50,
-            opacity: 0,
-            duration: 1,
-            delay: 1,
-            stagger: 0.2
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Select all comment buttons
+    const commentButtons = document.querySelectorAll('button:nth-child(2)');
+
+    commentButtons.forEach((button, index) => {
+        button.addEventListener('click', function() {
+            const postCard = this.closest('.bg-black\\/40');
+
+            // Check if comment box already exists
+            if (!postCard.querySelector('.comment-form')) {
+                // Create comment form
+                const commentBox = document.createElement('div');
+                commentBox.className = 'comment-form mt-4 p-4 bg-black/60 rounded-lg border border-[#DAA520]/20';
+                commentBox.innerHTML = `
+                    <div class="flex flex-col gap-3">
+                        <input type="text" placeholder="Your name" class="bg-black/40 text-white p-2 rounded-lg border border-[#DAA520]/20 focus:border-[#DAA520] outline-none">
+                        <textarea placeholder="Add your comment..." class="bg-black/40 text-white p-2 rounded-lg border border-[#DAA520]/20 focus:border-[#DAA520] outline-none min-h-[80px]"></textarea>
+                        <div class="flex justify-end gap-2">
+                            <button class="cancel-comment px-4 py-2 rounded-lg text-white/80 hover:text-white">Cancel</button>
+                            <button class="submit-comment px-4 py-2 rounded-lg bg-[#DAA520]/80 hover:bg-[#DAA520] text-black font-medium">Post Comment</button>
+                        </div>
+                    </div>
+                `;
+
+                // Append comment box to post card
+                postCard.appendChild(commentBox);
+
+                // Handle cancel button
+                commentBox.querySelector('.cancel-comment').addEventListener('click', function() {
+                    commentBox.remove();
+                });
+
+                // Handle submit button (you'll need to implement AJAX for actual submission)
+                commentBox.querySelector('.submit-comment').addEventListener('click', function() {
+                    const name = commentBox.querySelector('input').value;
+                    const comment = commentBox.querySelector('textarea').value;
+
+                    if (name && comment) {
+                        // Here you would typically send this data to your server
+                        console.log(`Post ${index}: Comment by ${name}: ${comment}`);
+
+                        // Show success message
+                        const successMsg = document.createElement('div');
+                        successMsg.className = 'text-green-400 mt-2';
+                        successMsg.textContent = 'Comment posted successfully!';
+                        commentBox.appendChild(successMsg);
+
+                        // Clear form
+                        commentBox.querySelector('input').value = '';
+                        commentBox.querySelector('textarea').value = '';
+
+                        // Remove success message and form after delay
+                        setTimeout(() => {
+                            commentBox.remove();
+                        }, 2000);
+                    }
+                });
+            }
         });
+    });
+});
     </script>
 </body>
 </html>

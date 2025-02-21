@@ -13,7 +13,7 @@ return new class extends Migration
             $table->foreignId('post_id')->nullable()->constrained('posts')->onDelete('cascade');
             $table->foreignId('recipe_id')->nullable()->constrained('recipes')->onDelete('cascade');
             $table->text('content');
-
+            $table->string('name')->after('post_id');
         });
     }
 
@@ -21,4 +21,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('comments');
     }
+
 };
