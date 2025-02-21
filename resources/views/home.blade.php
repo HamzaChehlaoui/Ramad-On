@@ -71,67 +71,99 @@
                 <!-- Decorative Circle -->
                 <div class="absolute inset-0 rounded-full bg-gradient-to-br from-[#DAA520]/20 to-transparent animate-pulse"></div>
 
-                <!-- Chef SVG -->
-                <svg viewBox="0 0 400 400" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="600" height="500">
+                    <!-- Stars in gold accent color -->
+                    <g fill="#DAA520" opacity="0.8">
+                      <circle cx="100" cy="80" r="1.5" />
+                      <circle cx="170" cy="150" r="1" />
+                      <circle cx="250" cy="60" r="1.5" />
+                      <circle cx="350" cy="120" r="1" />
+                      <circle cx="450" cy="80" r="1.5" />
+                      <circle cx="550" cy="150" r="1" />
+                      <circle cx="650" cy="90" r="1.5" />
+                      <circle cx="700" cy="200" r="1" />
+                      <circle cx="150" cy="250" r="1.5" />
+                      <circle cx="750" cy="120" r="1" />
+                      <circle cx="50" cy="180" r="1.5" />
+                      <circle cx="300" cy="100" r="1" />
+                      <circle cx="400" cy="220" r="1.5" />
+                      <circle cx="600" cy="180" r="1" />
+                    </g>
 
-                    <!-- Background Circle -->
-                    <circle cx="200" cy="200" r="180" fill="none" stroke="#DAA520" stroke-width="1" opacity="0.1"/>
-                    <circle cx="200" cy="200" r="160" fill="none" stroke="#DAA520" stroke-width="1" opacity="0.2"/>
+                    <!-- Moon with gold color matching website palette -->
+                    <path d="M580 120 A70 70 0 0 1 680 170 A60 60 0 0 0 600 100 A70 70 0 0 1 580 120" fill="#DAA520" />
 
-                    <!-- Chef Figure -->
-                    <!-- Head covering -->
-                    <path d="M160 120 C160 90 240 90 240 120 L240 140 L160 140 Z" fill="#DAA520" opacity="0.2"/>
+                    <!-- Mosque silhouette with gradient -->
+                    <linearGradient id="mosqueGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#111111" />
+                      <stop offset="100%" stop-color="#0A0A0A" />
+                    </linearGradient>
+                    <path d="M100 400 L100 320 Q200 250 300 320 L300 400 Z" fill="url(#mosqueGradient)" stroke="#222222" stroke-width="1" />
+                    <path d="M320 400 L320 320 Q420 250 520 320 L520 400 Z" fill="url(#mosqueGradient)" stroke="#222222" stroke-width="1" />
+                    <path d="M540 400 L540 320 Q640 250 740 320 L740 400 Z" fill="url(#mosqueGradient)" stroke="#222222" stroke-width="1" />
+                    <rect x="50" y="400" width="700" height="100" fill="url(#mosqueGradient)" stroke="#222222" stroke-width="1" />
 
-                    <!-- Face -->
-                    <path d="M180 150 C160 150 160 180 180 180 L220 180 C240 180 240 150 220 150 Z"
-                          fill="none" stroke="#DAA520" stroke-width="2"/>
+                    <!-- Main dome with gold accent color -->
+                    <linearGradient id="domeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#DAA520" />
+                      <stop offset="100%" stop-color="#B8860B" />
+                    </linearGradient>
+                    <path d="M400 320 Q500 200 600 320 L580 350 L420 350 L400 320" fill="url(#domeGradient)" stroke="#B8860B" stroke-width="1" />
+                    <rect x="400" y="280" width="10" height="40" fill="#DAA520" stroke="#B8860B" stroke-width="0.5" />
+                    <circle cx="405" cy="275" r="5" fill="#FFF59D" />
 
-                    <!-- Body -->
-                    <path d="M170 180 L160 280 L240 280 L230 180"
-                          fill="none" stroke="#DAA520" stroke-width="2"/>
+                    <!-- Minarets -->
+                    <rect x="180" y="200" width="20" height="200" fill="#111111" stroke="#222222" stroke-width="0.5" />
+                    <path d="M170 200 L210 200 L190 170 Z" fill="#DAA520" stroke="#B8860B" stroke-width="0.5" />
+                    <rect x="185" y="170" width="10" height="15" fill="#DAA520" stroke="#B8860B" stroke-width="0.5" />
+                    <circle cx="190" cy="165" r="3" fill="#FFF59D" />
 
-                    <!-- Arms -->
-                    <path d="M170 200 C140 220 130 240 150 270"
-                          fill="none" stroke="#DAA520" stroke-width="2"/>
-                    <path d="M230 200 C260 220 270 240 250 270"
-                          fill="none" stroke="#DAA520" stroke-width="2"/>
+                    <rect x="640" y="200" width="20" height="200" fill="#111111" stroke="#222222" stroke-width="0.5" />
+                    <path d="M630 200 L670 200 L650 170 Z" fill="#DAA520" stroke="#B8860B" stroke-width="0.5" />
+                    <rect x="645" y="170" width="10" height="15" fill="#DAA520" stroke="#B8860B" stroke-width="0.5" />
+                    <circle cx="650" cy="165" r="3" fill="#FFF59D" />
 
-                    <!-- Cooking Pot -->
-                    <ellipse cx="200" cy="290" rx="50" ry="20"
-                             fill="none" stroke="#DAA520" stroke-width="2"/>
-                    <path d="M150 290 L150 320 C150 335 250 335 250 320 L250 290"
-                          fill="none" stroke="#DAA520" stroke-width="2"/>
+                    <!-- Doors and windows with gold accent -->
+                    <rect x="140" y="340" width="30" height="60" rx="15" ry="15" fill="#DAA520" opacity="0.9" />
+                    <rect x="240" y="340" width="30" height="60" rx="15" ry="15" fill="#DAA520" opacity="0.9" />
+                    <rect x="380" y="340" width="30" height="60" rx="15" ry="15" fill="#DAA520" opacity="0.9" />
+                    <rect x="480" y="340" width="30" height="60" rx="15" ry="15" fill="#DAA520" opacity="0.9" />
+                    <rect x="580" y="340" width="30" height="60" rx="15" ry="15" fill="#DAA520" opacity="0.9" />
+                    <rect x="680" y="340" width="30" height="60" rx="15" ry="15" fill="#DAA520" opacity="0.9" />
 
-                    <!-- Steam -->
-                    <path d="M180 270 Q190 260 200 270 Q210 280 220 270"
-                          fill="none" stroke="#DAA520" stroke-width="2" opacity="0.5">
-                        <animate attributeName="d"
-                                 dur="3s"
-                                 repeatCount="indefinite"
-                                 values="M180 270 Q190 260 200 270 Q210 280 220 270;
-                                         M180 270 Q190 250 200 270 Q210 290 220 270;
-                                         M180 270 Q190 260 200 270 Q210 280 220 270"/>
-                    </path>
+                    <!-- Lanterns with gold gradient -->
+                    <linearGradient id="lanternGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#DAA520" />
+                      <stop offset="100%" stop-color="#B8860B" />
+                    </linearGradient>
 
-                    <!-- Decorative Elements -->
-                    <!-- Stars -->
-                    <path d="M120 100 L123 108 L130 110 L123 112 L120 120 L117 112 L110 110 L117 108 Z"
-                          fill="#DAA520" opacity="0.3"/>
-                    <path d="M280 150 L283 158 L290 160 L283 162 L280 170 L277 162 L270 160 L277 158 Z"
-                          fill="#DAA520" opacity="0.3"/>
+                    <g transform="translate(120, 450)">
+                      <path d="M0 0 L20 0 L15 -30 L5 -30 Z" fill="url(#lanternGradient)" />
+                      <rect x="5" y="-40" width="10" height="10" fill="#DAA520" />
+                      <circle cx="10" cy="-35" r="4" fill="#FFF59D" opacity="0.8" />
+                      <path d="M5 0 L15 0 L15 10 L5 10 Z" fill="#B8860B" />
+                    </g>
 
-                    <!-- Crescent -->
-                    <path d="M300 80 A 20 20 0 1 1 300 120 A 15 15 0 1 0 300 80"
-                          fill="#DAA520" opacity="0.3"/>
+                    <g transform="translate(680, 450)">
+                      <path d="M0 0 L20 0 L15 -30 L5 -30 Z" fill="url(#lanternGradient)" />
+                      <rect x="5" y="-40" width="10" height="10" fill="#DAA520" />
+                      <circle cx="10" cy="-35" r="4" fill="#FFF59D" opacity="0.8" />
+                      <path d="M5 0 L15 0 L15 10 L5 10 Z" fill="#B8860B" />
+                    </g>
 
-                    <!-- Islamic Pattern Elements -->
-                    <circle cx="100" cy="200" r="15" fill="none" stroke="#DAA520" stroke-width="1" opacity="0.2"/>
-                    <circle cx="300" cy="200" r="15" fill="none" stroke="#DAA520" stroke-width="1" opacity="0.2"/>
-                    <path d="M85 200 L115 200 M100 185 L100 215"
-                          stroke="#DAA520" stroke-width="1" opacity="0.2"/>
-                    <path d="M285 200 L315 200 M300 185 L300 215"
-                          stroke="#DAA520" stroke-width="1" opacity="0.2"/>
-                </svg>
+                    <!-- Decorative geometric pattern -->
+                    <g transform="translate(400, 500)" fill="none" stroke="#DAA520" stroke-width="1">
+                      <circle cx="0" cy="0" r="30" />
+                      <circle cx="0" cy="0" r="20" />
+                      <line x1="-30" y1="0" x2="30" y2="0" />
+                      <line x1="0" y1="-30" x2="0" y2="30" />
+                      <line x1="-21.21" y1="-21.21" x2="21.21" y2="21.21" />
+                      <line x1="21.21" y1="-21.21" x2="-21.21" y2="21.21" />
+                    </g>
+
+                    <!-- Text with gold color matching website -->
+                    <text x="400" y="550" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" fill="#DAA520" font-weight="bold">Ramadan Mubarak</text>
+                  </svg>
             </div>
         </div>
     </main>
