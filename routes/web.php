@@ -24,3 +24,4 @@ Route::get('/Statistics', [StatisticsController::class, 'index'])->name('statist
 Route::post('/posts', [ExperienceController::class, 'store'])->name('posts.store');
 Route::post('/recipes', [RecipeController::class, 'store'])->name('recipes.store');
 Route::get('/recipes/filter/{category}', [RecipeController::class, 'filter']);
+Route::get('/Statistics', [StatisticsController::class, 'index'])->name('statistics');

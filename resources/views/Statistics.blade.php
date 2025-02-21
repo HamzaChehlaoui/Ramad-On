@@ -62,7 +62,7 @@
                 <div class="flex items-start justify-between">
                     <div>
                         <h3 class="text-white/70 text-lg">Total Publications</h3>
-                        <p class="text-4xl font-bold text-white mt-2">278</p>
+                        <p class="text-4xl font-bold text-white mt-2">{{ $totalPosts }}</p>
                     </div>
                     <div class="w-12 h-12 rounded-full bg-[#DAA520]/20 flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#DAA520]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -85,7 +85,7 @@
                 <div class="flex items-start justify-between">
                     <div>
                         <h3 class="text-white/70 text-lg">Total Recipes</h3>
-                        <p class="text-4xl font-bold text-white mt-2">142</p>
+                        <p class="text-4xl font-bold text-white mt-2">{{ $totalRecipes }}</p>
                     </div>
                     <div class="w-12 h-12 rounded-full bg-[#DAA520]/20 flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#DAA520]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -106,7 +106,7 @@
                 <div class="flex items-start justify-between">
                     <div>
                         <h3 class="text-white/70 text-lg">Total Comment</h3>
-                        <p class="text-4xl font-bold text-white mt-2">67</p>
+                        <p class="text-4xl font-bold text-white mt-2">{{ $totalComments }}</p>
                     </div>
                     <div class="w-12 h-12 rounded-full bg-[#DAA520]/20 flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#DAA520]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
