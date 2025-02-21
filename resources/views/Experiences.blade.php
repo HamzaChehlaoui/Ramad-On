@@ -116,11 +116,21 @@
     </button>
 
     <script>
-        // Animate elements on page load
 
 document.addEventListener('DOMContentLoaded', function() {
     // Select all comment buttons
     const commentButtons = document.querySelectorAll('button:nth-child(2)');
+
+    // Sample comments data (in a real application, this would come from your database)
+    const sampleComments = {
+        0: [
+            { name: "Sarah Johnson", comment: "Great insights! This really made me think.", timestamp: "2 hours ago" },
+            { name: "Mike Chen", comment: "I disagree with point #3, but overall good post.", timestamp: "5 hours ago" }
+        ],
+        1: [
+            { name: "Alex Rodriguez", comment: "This changed my perspective, thanks for sharing!", timestamp: "1 day ago" }
+        ]
+    };
 
     commentButtons.forEach((button, index) => {
         button.addEventListener('click', function() {
@@ -128,11 +138,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Check if comment box already exists
             if (!postCard.querySelector('.comment-form')) {
+                // Create comment form container
+                const commentContainer = document.createElement('div');
+                commentContainer.className = 'comment-container mt-4';
+
+                // Create view comments section
+                const viewCommentsBox = document.createElement('div');
+                viewCommentsBox.className = 'view-comments mb-4 p-4 bg-black/60 rounded-lg border border-[#DAA520]/20';
+
+                // Get comments for this post (if any)
+                const postComments = sampleComments[index] || [];
+
+                if (postComments.length > 0) {
+                    // Create comments list
+                    const commentsList = document.createElement('div');
+                    commentsList.className = 'comments-list space-y-3';
+
+                    // Comment header
+                    const commentsHeader = document.createElement('div');
+                    commentsHeader.className = 'flex justify-between items-center mb-3';
+                    commentsHeader.innerHTML = `
+                        <h3 class="text-white font-medium">Comments (${postComments.length})</h3>
+                    `;
+                    viewCommentsBox.appendChild(commentsHeader);
+
+                    // Add each comment
+                    postComments.forEach(commentData => {
+                        const commentItem = document.createElement('div');
+                        commentItem.className = 'comment-item p-3 bg-black/40 rounded border border-[#DAA520]/10';
+                        commentItem.innerHTML = `
+                            <div class="flex justify-between">
+                                <span class="font-medium text-[#DAA520]">${commentData.name}</span>
+                                <span class="text-white/50 text-xs">${commentData.timestamp}</span>
+                            </div>
+                            <p class="mt-1 text-white/90">${commentData.comment}</p>
+                        `;
+                        commentsList.appendChild(commentItem);
+                    });
+
+                    viewCommentsBox.appendChild(commentsList);
+                } else {
+                    // No comments message
+                    viewCommentsBox.innerHTML = `
+                        <p class="text-white/50 text-center py-2">No comments yet. Be the first to comment!</p>
+                    `;
+                }
+
                 // Create comment form
                 const commentBox = document.createElement('div');
-                commentBox.className = 'comment-form mt-4 p-4 bg-black/60 rounded-lg border border-[#DAA520]/20';
+                commentBox.className = 'comment-form p-4 bg-black/60 rounded-lg border border-[#DAA520]/20';
                 commentBox.innerHTML = `
                     <div class="flex flex-col gap-3">
+                        <h3 class="text-white font-medium">Add a comment</h3>
                         <input type="text" placeholder="Your name" class="bg-black/40 text-white p-2 rounded-lg border border-[#DAA520]/20 focus:border-[#DAA520] outline-none">
                         <textarea placeholder="Add your comment..." class="bg-black/40 text-white p-2 rounded-lg border border-[#DAA520]/20 focus:border-[#DAA520] outline-none min-h-[80px]"></textarea>
                         <div class="flex justify-end gap-2">
@@ -142,15 +199,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
 
-                // Append comment box to post card
-                postCard.appendChild(commentBox);
+                // Append both boxes to the container
+                commentContainer.appendChild(viewCommentsBox);
+                commentContainer.appendChild(commentBox);
+
+                // Append container to post card
+                postCard.appendChild(commentContainer);
 
                 // Handle cancel button
                 commentBox.querySelector('.cancel-comment').addEventListener('click', function() {
-                    commentBox.remove();
+                    commentContainer.remove();
                 });
 
-                // Handle submit button (you'll need to implement AJAX for actual submission)
+                // Handle submit button (with dynamic update to comments view)
                 commentBox.querySelector('.submit-comment').addEventListener('click', function() {
                     const name = commentBox.querySelector('input').value;
                     const comment = commentBox.querySelector('textarea').value;
@@ -158,6 +219,34 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (name && comment) {
                         // Here you would typically send this data to your server
                         console.log(`Post ${index}: Comment by ${name}: ${comment}`);
+
+                        // Add the new comment to the view (for demo purposes)
+                        if (viewCommentsBox.querySelector('.text-center')) {
+                            // Remove "no comments" message if it exists
+                            viewCommentsBox.innerHTML = `
+                                <div class="flex justify-between items-center mb-3">
+                                    <h3 class="text-white font-medium">Comments (1)</h3>
+                                </div>
+                                <div class="comments-list space-y-3"></div>
+                            `;
+                        }
+
+                        const commentsList = viewCommentsBox.querySelector('.comments-list');
+                        const commentCount = viewCommentsBox.querySelector('h3');
+                        const currentCount = parseInt(commentCount.textContent.match(/\d+/)[0]);
+                        commentCount.textContent = `Comments (${currentCount + 1})`;
+
+                        // Create and add the new comment
+                        const newComment = document.createElement('div');
+                        newComment.className = 'comment-item p-3 bg-black/40 rounded border border-[#DAA520]/10 animate-fadeIn';
+                        newComment.innerHTML = `
+                            <div class="flex justify-between">
+                                <span class="font-medium text-[#DAA520]">${name}</span>
+                                <span class="text-white/50 text-xs">Just now</span>
+                            </div>
+                            <p class="mt-1 text-white/90">${comment}</p>
+                        `;
+                        commentsList.prepend(newComment);
 
                         // Show success message
                         const successMsg = document.createElement('div');
@@ -169,9 +258,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         commentBox.querySelector('input').value = '';
                         commentBox.querySelector('textarea').value = '';
 
-                        // Remove success message and form after delay
+                        // Remove success message after delay
                         setTimeout(() => {
-                            commentBox.remove();
+                            successMsg.remove();
                         }, 2000);
                     }
                 });
